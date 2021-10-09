@@ -22,7 +22,8 @@ class InputPercent(injector: HasAndroidInjector) : Element(injector) {
     }
 
     companion object {
-        const val MIN = 70.0
-        const val MAX = 130.0
+        //hard limits to Profile change via Automation (default 70/130)
+        const val MIN = 50.0
+        const val MAX = 250.0
     }
 }
