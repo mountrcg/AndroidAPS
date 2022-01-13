@@ -1,9 +1,7 @@
 /*
   Determine Basal
-
   Released under MIT license. See the accompanying LICENSE.txt file for
   full terms and conditions
-
   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -1093,9 +1091,9 @@ var determine_basal = function determine_basal(glucose_status, currenttemp, iob_
             var mealInsulinReq = round( meal_data.mealCOB / profile.carb_ratio ,3);
             // mod 10: make the irregular mutiplier a user input
             var smb_max_range = profile.smb_max_range_extension;
-            if (smb_max_range > 1) {
-                console.error("SMB max range extended from default by factor", smb_max_range)
-            }
+            //if (smb_max_range > 1) {
+            //    console.error("SMB max range extended from default by factor", smb_max_range)
+            //}
             if (typeof profile.maxSMBBasalMinutes === 'undefined' ) {
                 var maxBolus = round(smb_max_range * profile.current_basal * 30 / 60 ,1);
                 console.error("profile.maxSMBBasalMinutes undefined: defaulting to 30m");
