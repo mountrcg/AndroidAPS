@@ -362,7 +362,7 @@
     <string name="openapsama_smb_delivery_ratio_summary">Default value: 0.5 This is another key OpenAPS safety cap, and specifies what share of the total insulin required can be delivered as SMB. This is to prevent people from getting into dangerous territory by setting SMB requests from the caregivers phone at the same time. Increase this experimental value slowly and with caution.</string>
     <string name="openapsama_smb_delivery_ratio_min_summary">Default value: 0.5 This is the lower end of a linearly increasing ratio rather than the fix value above.</string>
     <string name="openapsama_smb_delivery_ratio_max_summary">Default value: 0.9 This is the upper end of a linearly increasing ratio rather than the fix value above.</string>
-    <string name="openapsama_smb_delivery_ratio_bg_range_summary">Default value: 0. The linearly increasing SMB delivery ratio is mapped to the glucose range [target_bg, target_bg+bg_range].\nAt target_bg the SMB ratio is smb_delivery_ratio_min, at target_bg+bg_range it is smb_delivery_ratio_max\nWith 0 the linearly increasing SMB ratio is disabled and the fix smb_delivery_ratio is used.</string>
+    <string name="openapsama_smb_delivery_ratio_bg_range_summary">Default value: 40. The linearly increasing SMB delivery ratio is mapped to the glucose range [target_bg, target_bg+bg_range].\nAt target_bg the SMB ratio is smb_delivery_ratio_min, at target_bg+bg_range it is smb_delivery_ratio_max\nWith 0 the linearly increasing SMB ratio is disabled and the fix smb_delivery_ratio is used.</string>
     <string name="openapsama_smb_max_range_extension_summary">Default value: 1 This is another key OpenAPS safety cap, and specifies by what factor you can exceed the regular 120 maxSMB/maxUAM minutes. Increase this experimental value slowly and with caution.</string>
     <string name="key_openapsama_autosens_max" translatable="false">autosens_max</string>
     <string name="openapsama_autosens_max_summary">Default value: 1.2\nThis is a multiplier cap for autosens (and soon autotune) to set a 20%% max limit on how high the autosens ratio can be, which in turn determines how high autosens can adjust basals, how low it can adjust ISF, and how low it can set the BG target.</string>
@@ -371,7 +371,19 @@
     <string name="key_openapsama_autoisf_max" translatable="false">autoisf_max</string>
     <string name="openapsama_autoisf_max_summary">Default value: 1.2\nThis is a multiplier cap for autoISF to set a limit on how high the autoISF ratio can be, which in turn determines how low it can adjust ISF.</string>
     <string name="key_openapsama_autoisf_hourlychange" translatable="false">autoisf_hourlychange</string>
-    <string name="openapsama_autoisf_hourlychange_summary">Default value: 0.2\nThis is the rate at which autoISF grows per hour assuming bg is twice the target. With a value of 1.0 it will have reduced ISF to 50% after 1 hour of bg at twice the target.\nWith 0.0 the effect of autoISF is effectively disabled.</string>
+    <string name="openapsama_autoisf_hourlychange_summary">Default value: 0.2\nThis is the rate at which autoISF grows per hour assuming bg is twice the target. With a value of 1.0 it will have reduced ISF to 50% after 1 hour of bg at twice the target.\n\nWith 0.0 the effect of autoISF is effectively disabled.</string>
+    <string name="key_openapsama_lower_ISFrange_weight" translatable="false">lower_ISFrange_weight</string>
+    <string name="openapsama_lower_ISFrange_weight_summary">Default value: 0.2\nThis is the weight applied to the polygon which adapats ISF if glucose is below target. \n\nWith 0.0 the effect is effectively disabled.</string>
+    <string name="key_openapsama_higher_ISFrange_weight" translatable="false">higher_ISFrange_weight</string>
+    <string name="openapsama_higher_ISFrange_weight_summary">Default value: 0.2\nThis is the weight applied to the polygon which adapats ISF if glucose is above target. \n\nWith 0.0 the effect is effectively disabled.</string>
+    <string name="key_openapsama_delta_ISFrange_weight" translatable="false">delta_ISFrange_weight</string>
+    <string name="openapsama_delta_ISFrange_weight_summary">Default value: 0.2\nThis is the weight applied to the polygon which adapats ISF higher deltas. \n\nWith 0.0 the effect is effectively disabled.</string>
+    <string name="key_openapsama_postmeal_ISF_weight" translatable="false">postmeal_ISF_weight</string>
+    <string name="openapsama_postmeal_ISF_weight_summary">Default value: 0.02\nThis is the weight applied to the linear slope while glucose rises and  which adapts ISF. \n\nWith 0.0 this contribution is effectively disabled.</string>
+    <string name="key_openapsama_postmeal_ISF_duration" translatable="false">postmeal_ISF_duration</string>
+    <string name="openapsama_postmeal_ISF_duration_summary">Default value: 3\nThis is the duration in hours how long after a meal the effect will be active. \n\nAAPS will delete carb timing after 10 hours latest no matter what you enter.</string>
+    <string name="key_enable_postmeal_ISF_always" translatable="false">postmeal_ISF_duration</string>
+    <string name="enable_postmeal_ISF_always_summary">Enable the postprandial ISF adaptation all the time regardless of when the last meal was taken.</string>
     <string name="key_openapsama_autosens_adjusttargets" translatable="false">autosens_adjust_targets</string>
     <string name="openapsama_autosens_adjusttargets">Autosens adjust targets, too</string>
     <string name="openapsama_autosens_adjusttargets_summary">Default value: true\nThis is used to allow autosens to adjust BG targets, in addition to ISF and basals.</string>
@@ -708,7 +720,8 @@
     <string name="insightpump_shortname">Sight</string>
     <string name="key_enableautoISF_with_COB" translatable="false">enableautoISF_with_COB</string>
     <string name="enableautoISFwithcob">Enable autoISF with COB</string>
-    <string name="enableautoISFwithcob_summary">Enable autoISF when there is COB active.</string>
+    <string name="enableautoISFwithcob_summary">Enable autoISF when there is COB active</string>
+    <string name="enable_postmeal_ISF_always">Enable autoISF postprandial all day</string>
     <string name="key_enableSMB_always" translatable="false">enableSMB_always</string>
     <string name="key_enableSMB_with_COB" translatable="false">enableSMB_with_COB</string>
     <string name="key_enableSMB_with_temptarget" translatable="false">enableSMB_with_temptarget</string>
@@ -883,6 +896,11 @@
     <string name="openapsama_autosens_max">Max autosens ratio</string>
     <string name="openapsama_autosens_min">Min autosens ratio</string>
     <string name="openapsama_autoisf_max">Max autoisf ratio</string>
+    <string name="openapsama_lower_ISFrange_weight">lower ISF-range weight</string>
+    <string name="openapsama_higher_ISFrange_weight">higher ISF-range weight</string>
+    <string name="openapsama_delta_ISFrange_weight">delta ISF-range weight</string>
+    <string name="openapsama_postmeal_ISF_weight">postprandial ISF weight</string>
+    <string name="openapsama_postmeal_ISF_duration">postprandial ISF time window</string>
     <string name="openapsama_autoisf_hourlychange">autoisf hourly increment</string>
     <string name="openapsama_bolussnooze_dia_divisor">Bolus snooze dia divisor</string>
     <string name="openapsama_max_daily_safety_multiplier">Max daily safety multiplier</string>

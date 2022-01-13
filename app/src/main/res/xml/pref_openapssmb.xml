@@ -68,7 +68,11 @@
             android:key="@string/enableautoISFwithcob"
             android:summary="@string/enableautoISFwithcob_summary"
             android:title="@string/enableautoISFwithcob" />
-
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="Enable postprandial ISF always"
+            android:summary="Enable the postprandial ISF adaptation all the time regardless of when the last meal was taken."
+            android:title="Enable autoISF postprandial all day" />
         <SwitchPreference
             android:defaultValue="false"
             android:key="@string/key_use_smb"
@@ -291,7 +295,7 @@
                 validate:testType="floatNumericRange" />
 
             <info.nightscout.androidaps.utils.textValidator.ValidatingEditTextPreference
-                android:defaultValue="0"
+                android:defaultValue="40"
                 android:dialogMessage="@string/openapsama_smb_delivery_ratio_bg_range_summary"
                 android:digits="0123456789.,"
                 android:inputType="number"
