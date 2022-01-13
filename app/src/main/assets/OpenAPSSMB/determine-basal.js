@@ -37,7 +37,7 @@ function convert_bg(value, profile)
 {
     if (profile.out_units === "mmol/L")
     {
-        return round(value / 18, 1).toFixed(1);
+        return round(value / 18, 1);
     }
     else
     {
@@ -199,7 +199,8 @@ function autoISF(sens, target_bg, profile, glucose_status, meal_data, currentTim
 
     // start of mod V14j: calculate acce_ISF from bg acceleration and adapt ISF accordingly
     var bg_acce = glucose_status.bg_acceleration;
-    var minmax_delta = - glucose_status.parabola_fit_a1/2/glucose_status.parabola_fit_a2 * 5;       // back frm 5min block  1 min
+    var minmax_delta = - glucose_status.parabola_fit_a1/2/glucose_status.parabola_fit_a2 * 5;
+    // back from 5min block  1 min
     var minmax_value = round(glucose_status.parabola_fit_a0 - minmax_delta*minmax_delta/25*glucose_status.parabola_fit_a2, 1);
     minmax_delta = round(minmax_delta, 1)
     if (minmax_delta<0 && bg_acce<0) {
@@ -215,9 +216,9 @@ function autoISF(sens, target_bg, profile, glucose_status, meal_data, currentTim
     if ( fit_corr<0.9 ) {
         console.error("acce_ISF adaptation by-passed as correlation", round(fit_corr,3), "is too low");
     } else {
-        var fit_share = 10*(fit_corr-0.9);              // 0 at correlation 0.9, 1 at 1.00
+        var fit_share = 10 * (fit_corr - 0.9);              // 0 at correlation 0.9, 1 at 1.00
         var cap_weight = 1;                             // full contribution above target
-        if ( glucose_status.glucose<profile.target_bg && bg_acce<1 ) {
+        if ( glucose_status.glucose < profile.target_bg && bg_acce > 1 ) {
             cap_weight = 0.5;                           // halve the effect below target
         }
         if ( bg_acce < 0 ) {
@@ -225,7 +226,7 @@ function autoISF(sens, target_bg, profile, glucose_status, meal_data, currentTim
         } else {
             var acce_weight = profile.bgAccel_ISF_weight;
         }
-        acce_ISF = 1 + bg_acce * cap_weight * acce_weight ;
+        acce_ISF = 1 + bg_acce * cap_weight * acce_weight * fit_share;
         if ( acce_ISF != 1 ) {
            sens_modified = true;
         }
@@ -294,28 +295,28 @@ function autoISF(sens, target_bg, profile, glucose_status, meal_data, currentTim
     var levelISF = 1
     var weightISF = profile.autoisf_hourlychange;           // mod 7d: specify factor directly; use factor 0 to shut autoISF OFF
     if (meal_data.mealCOB>0 && !profile.enableautoisf_with_COB) {
-        console.error("autoISF by-passed; preferences disabled mealCOB of "+round(meal_data.mealCOB,1));    // mod 7f
+        console.error("dura_ISF by-passed; preferences disabled mealCOB of " + round(meal_data.mealCOB,1));    // mod 7f
     } else if (dura05<10) {
-        console.error("autoISF by-passed; BG is only "+dura05+"m at level "+avg05);
+        console.error("dura_ISF by-passed; BG is only " + dura05+"m at level " + avg05);
     } else if (avg05 <= target_bg) {
-        console.error("autoISF by-passed; avg. glucose", avg05, "below target", target_bg);
+        console.error("dura_ISF by-passed; avg. glucose " + avg05 + " below target " + convert_bg(target_bg,profile));
     } else {
         // # fight the resistance at high levels
         var dura05_weight = dura05 / 60;
         var avg05_weight = weightISF / target_bg;                                       // mod gz7b: provide access from AAPS
         levelISF += dura05_weight*avg05_weight*(avg05-target_bg);
         sens_modified = true;
-        console.error("autoISF reports ISF", sens, "did not do it for", dura05,"m; go more aggressive by", round(levelISF,2));
+        console.error("dura_ISF reports ISF " + convert_bg(sens,profile) + " did not do it for " + dura05 + "m; go more aggressive by " + round(levelISF,2));
         if (maxISFReduction < levelISF) {
-            console.error("autoISF adaptation", round(levelISF,2), "limited by autoisf_max", maxISFReduction);
+            console.error("dura_ISF adaptation " + round(levelISF,2) + " limited by autoisf_max " + maxISFReduction);
         }
     }
     if ( sens_modified ) {
         var liftISF = Math.max(Math.min(maxISFReduction, Math.max(levelISF, bg_ISF, delta_ISF, acce_ISF, pp_ISF)), sensitivityRatio);  // corrected logic on 30.Jan.2021; mod V14j
         if ( acce_ISF<1 && liftISF>1 ) {                                                                // mod V14j: brakes on for otherwise stronger ISF
-            liftISF = liftISF *  acce_ISF;                                                              // mod V14j: brakes on for otherwise stronger ISF
-            console.error("strongest ISF weakened by factor", acce_ISF, "as bg decelerates already");   // mod V14j: brakes on for otherwise stronger ISF
-        }                                                                                               // mod V14j: brakes on for otherwise stronger ISF
+            console.error("strongest ISF factor " + round(liftISF,2) + " weakened to " + round(liftISF*acce_ISF,2) + " as bg decelerates already");   // mod V14j: brakes on for otherwise stronger ISF
+            liftISF = liftISF * acce_ISF;                                                               // mod V14j: brakes on for otherwise stronger ISF
+         }                                                                                               // mod V14j: brakes on for otherwise stronger ISF
         sens = round(profile.sens / liftISF, 1);
     }
     return sens;
