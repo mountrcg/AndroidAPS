@@ -313,7 +313,7 @@ function autoISF(sens, target_bg, profile, glucose_status, meal_data, currentTim
     }
     if ( sens_modified ) {
         var liftISF = Math.max(Math.min(maxISFReduction, Math.max(levelISF, bg_ISF, delta_ISF, acce_ISF, pp_ISF)), sensitivityRatio);  // corrected logic on 30.Jan.2021; mod V14j
-        if ( acce_ISF<1 && liftISF>1 ) {                                                                // mod V14j: brakes on for otherwise stronger ISF
+        if ( acce_ISF<1 && liftISF>=1 ) {                                                                // mod V14j: brakes on for otherwise stronger ISF
             console.error("strongest ISF factor " + round(liftISF,2) + " weakened to " + round(liftISF*acce_ISF,2) + " as bg decelerates already");   // mod V14j: brakes on for otherwise stronger ISF
             liftISF = liftISF * acce_ISF;                                                               // mod V14j: brakes on for otherwise stronger ISF
          }                                                                                               // mod V14j: brakes on for otherwise stronger ISF
