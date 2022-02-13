@@ -9,8 +9,8 @@ import javax.inject.Singleton
 class SkinClassic @Inject constructor(private val config: Config): SkinInterface {
 
     override val description: Int get() = R.string.classic_description
-    override val mainGraphHeight: Int get() = 380
-    override val secondaryGraphHeight: Int get() = 237
+    override val mainGraphHeight: Int get() = 365
+    override val secondaryGraphHeight: Int get() = 235
 
     override fun overviewLayout(isLandscape: Boolean, isTablet: Boolean, isSmallHeight: Boolean): Int =
         when {
