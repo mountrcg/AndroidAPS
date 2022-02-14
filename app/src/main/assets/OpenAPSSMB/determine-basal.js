@@ -39,7 +39,7 @@ function convert_bg(value, profile)
 {
     if (profile.out_units === "mmol/L")
     {
-        return round(value / 18, 1).toFixed(1);
+        return round(value / 18, 1);
     }
     else
     {
@@ -698,7 +698,7 @@ var determine_basal = function determine_basal(glucose_status, currenttemp, iob_
     // autotuned CR is still in effect even when basals and ISF are being adjusted by TT or autosens
     // this avoids overdosing insulin for large meals when low temp targets are active
     csf = sens / profile.carb_ratio;
-    console.error("profile.sens:",profile.sens,"sens:",sens,"CSF:",csf);
+    console.error("profile.sens:",convert_bg(profile.sens,profile),"sens:",convert_bg(sens,profile),"CSF:",round(csf,1));
 
     var maxCarbAbsorptionRate = 30; // g/h; maximum rate to assume carbs will absorb if no CI observed
     // limit Carb Impact to maxCarbAbsorptionRate * csf in mg/dL per 5m
