@@ -1,0 +1,14 @@
+new_parameter 	maxDeltaRatio		 	0.3 									### was 0.2
+new_parameter	SMBRatio				0.65									### was 0.5
+
+profile 		bgAccel_ISF_weight 		profile['bgAccel_ISF_weight']+0.03 		### stronger
+profile 		bgBrake_ISF_weight 		profile['bgBrake_ISF_weight']-0.03 		### weaker
+#profile			postmeal_ISF_weight		0.06									### is 0.04
+#profile			smb_delivery_ratio		0.75									### is 0.65
+#profile			delta_ISFrange_weight	0.6										### is 0.8
+
+#profile 		min_bg 							101 											### just above the temp target threshold for SMB to be diabled with hTT
+#profile 		max_bg 							profile['min_bg']								### redefine target
+#profile 		target_bg 						int((profile['min_bg'] + profile['max_bg'])/2) 	### example of numerical expression
+#profile 		temptargetSet 					True 											### i.e. not using NS profile target
+#profile 		allowSMB_with_high_temptarget 	False 											### was True at the time
