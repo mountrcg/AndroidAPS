@@ -329,7 +329,6 @@
     <string name="openapsma_autosensdata_label">Autosens data</string>
     <string name="openapsma_scriptdebugdata_label">Script debug</string>
     <string name="openapsama_useautosens">Use Autosens feature</string>
-    <string name="refresheventsfromnightscout">Refresh events from NS</string>
     <string name="openapsama_useautoisf">Use Autoisf feature</string>
     <string name="a52_risk_enable">A52 risk enable</string>
     <string name="a52_risk_enable_summary">Flag to disable Medtronic A52 error safety (should lead to more agressive bolusing)</string>
