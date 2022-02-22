@@ -306,14 +306,14 @@ public class DetermineBasalAdapterSMBJS {
         // mod 7d: can I add autosens_min here?
         mProfile.put("autoisf_max",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_autoisf_max, "2")));
         mProfile.put("autoisf_min",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_autoisf_min, "0.7")));
-        mProfile.put("autoisf_hourlychange",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_autoisf_hourlychange, "0.4")));
-        mProfile.put("lower_ISFrange_weight",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_lower_ISFrange_weight, "0")));
-        mProfile.put("higher_ISFrange_weight",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_higher_ISFrange_weight, "0.8")));
-        mProfile.put("delta_ISFrange_weight",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_delta_ISFrange_weight, "0.8")));
-        mProfile.put("postmeal_ISF_weight",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_postmeal_ISF_weight, "0.02")));
-        mProfile.put("postmeal_ISF_duration",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_postmeal_ISF_duration, "120")));
-        mProfile.put("bgAccel_ISF_weight",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_BgAccel_ISF_weight, "0.15")));
-        mProfile.put("bgBrake_ISF_weight",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_BgBrake_ISF_weight, "0.15")));
+        mProfile.put("autoisf_hourlychange",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_autoisf_hourlychange, "0.2")));
+        mProfile.put("lower_ISFrange_weight",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_lower_ISFrange_weight, "1.0")));
+        mProfile.put("higher_ISFrange_weight",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_higher_ISFrange_weight, "1.0")));
+        mProfile.put("delta_ISFrange_weight",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_delta_ISFrange_weight, "1.0")));
+        mProfile.put("postprandial_ISF_weight",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_postprandial_ISF_weight, "0.02")));
+        mProfile.put("postprandial_ISF_duration",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_postprandial_ISF_duration, "120")));
+        mProfile.put("bgAccel_ISF_weight",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_BgAccel_ISF_weight, "0.02")));
+        mProfile.put("bgBrake_ISF_weight",  SafeParse.stringToDouble(sp.getString(R.string.key_openapsama_BgBrake_ISF_weight, "0.95")));
 
         if (profileFunction.getUnits().equals(Constants.MMOL)) {
             mProfile.put("out_units", "mmol/L");

@@ -220,7 +220,7 @@ function autoISF(sens, target_bg, profile, glucose_status, meal_data, currentTim
 
     // start of mod V14j: calculate acce_ISF from bg acceleration and adapt ISF accordingly
     var bg_acce = glucose_status.bg_acceleration;
-    if (glucose_status.parabola_fit_a2 !=0) {
+    if (glucose_status.parabola_fit_a2 !=0 ) {
         var minmax_delta = - glucose_status.parabola_fit_a1/2/glucose_status.parabola_fit_a2 * 5;       // back from 5min block to 1 min
         var minmax_value = round(glucose_status.parabola_fit_a0 - minmax_delta*minmax_delta/25*glucose_status.parabola_fit_a2, 1);
         minmax_delta = round(minmax_delta, 1)
@@ -282,8 +282,9 @@ function autoISF(sens, target_bg, profile, glucose_status, meal_data, currentTim
         console.error("delta_ISF adaptation by-passed as average glucose < "+target_bg+"+10");
     } else if (glucose_status.short_avgdelta<0) {
         console.error("delta_ISF adaptation by-passed as no rise or too short lived");
-    } else if (profile.enableppisf_always || profile.postmeal_ISF_duration >= (currentTime - meal_data.lastCarbTime) / 1000/3600) {     // corrected logic on 17.Sep.2021
-        pp_ISF = 1 + Math.max(0, bg_delta * profile.postmeal_ISF_weight);
+    } else if (profile.enableppisf_always || profile.postprandial_ISF_duration >= (currentTime -
+    meal_data.lastCarbTime) / 1000/3600) {     // corrected logic on 17.Sep.2021
+        pp_ISF = 1 + Math.max(0, bg_delta * profile.postprandial_ISF_weight);
         console.error("pp_ISF adaptation is", round(pp_ISF,2));
         if (pp_ISF != 1) {
             sens_modified = true;
