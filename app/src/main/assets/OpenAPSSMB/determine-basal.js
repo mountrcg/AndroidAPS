@@ -216,7 +216,7 @@ function autoISF(sens, target_bg, profile, glucose_status, meal_data, currentTim
         }
     }
     var fit_corr = glucose_status.parabola_fit_correlation;
-    if ( fit_corr<0.9 ) {
+    if ( fit_corr<=0.9 ) {
         console.error("acce_ISF adaptation by-passed as correlation", round(fit_corr,3), "is too low");
     } else {
         var fit_share = 10*(fit_corr-0.9);                              // 0 at correlation 0.9, 1 at 1.00
