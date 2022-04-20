@@ -18,14 +18,12 @@
             validate:testErrorString="@string/error_mustbe6digitnumber"
             validate:testType="regexp" />
 
-
         <ListPreference
             android:defaultValue="1"
             android:entries="@array/medtronicPumpTypeArray"
             android:entryValues="@array/medtronicPumpTypeArray"
             android:key="@string/key_medtronic_pump_type"
             android:title="@string/medtronic_pump_type" />
-
 
         <ListPreference
             android:defaultValue="@string/key_medtronic_pump_frequency_us_ca"
@@ -95,7 +93,7 @@
             android:enabled="true"
             android:key="@string/key_rileylink_mac_address"
             android:summary=""
-            android:title="RileyLink Configuration">
+            android:title="@string/rileylink_configuration">
             <intent android:action="info.nightscout.androidaps.plugins.PumpCommon.dialog.RileyLinkBLEConfigActivity" />
         </Preference>
         <SwitchPreference

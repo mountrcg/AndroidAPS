@@ -34,18 +34,43 @@
     <!-- To receive data from xdrip. -->
     <uses-permission android:name="com.eveningoutpost.dexdrip.permissions.RECEIVE_BG_ESTIMATE" />
 
+    <!-- To receive data from Aidex -->
+    <uses-permission android:name="com.microtechmd.cgms.aidex.permissions.RECEIVE_BG_ESTIMATE" />
+
+
     <application
         android:name=".MainApp"
         android:extractNativeLibs="true"
         android:allowBackup="true"
+        android:backupAgent=".utils.SPBackupAgent"
+        android:fullBackupOnly="false"
         android:icon="${appIcon}"
         android:label="@string/app_name"
+        android:restoreAnyVersion="true"
         android:roundIcon="${appIconRound}"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.Launcher"
-        android:fullBackupOnly="false"
-        android:backupAgent=".utils.SPBackupAgent"
-        android:restoreAnyVersion="true">
+        android:theme="@style/AppTheme.Launcher" >
+
+        <activity
+            android:name=".widget.WidgetConfigureActivity"
+            android:theme="@android:style/Theme.Material.Dialog.NoActionBar"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".widget.Widget"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
 
         <meta-data
             android:name="com.google.android.backup.api_key"
@@ -56,6 +81,7 @@
             android:resource="@xml/automotive_app_desc" />
 
         <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -65,6 +91,7 @@
         </activity>
         <activity android:name=".activities.PreferencesActivity" />
         <activity android:name=".plugins.general.overview.activities.QuickWizardListActivity"
+            android:theme="@style/AppTheme"
             android:exported="false">
             <intent-filter>
                 <action android:name="info.nightscout.androidaps.plugins.general.overview.activities.QuickWizardListActivity" />
@@ -72,13 +99,18 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".plugins.general.maintenance.activities.PrefImportListActivity" />
-        <activity android:name=".activities.HistoryBrowseActivity" />
-        <activity android:name=".activities.TreatmentsActivity" />
-        <activity android:name=".activities.SurveyActivity" />
+        <activity android:name=".plugins.general.maintenance.activities.PrefImportListActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.HistoryBrowseActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.TreatmentsActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.SurveyActivity"
+            android:theme="@style/AppTheme" />
         <activity android:name=".activities.ProfileHelperActivity"
-            android:theme="@style/ProfileHelperAppTheme" />
-        <activity android:name=".activities.StatsActivity" />
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.StatsActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
             android:excludeFromRecents="true"
@@ -106,6 +138,8 @@
                 <action android:name="com.china.poctech.data"/>
                 <!-- Receiver from Tomato -->
                 <action android:name="com.fanqies.tomatofn.BgEstimate"/>
+                <!-- Receiver from GlucoRx Aidex -->
+                <action android:name="com.microtechmd.cgms.aidex.action.BgEstimate"/>
             </intent-filter>
         </receiver>
 
@@ -119,9 +153,6 @@
                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
             </intent-filter>
         </receiver>
-
-        <!-- Receiver keep alive, scheduled every 30 min -->
-        <receiver android:name=".receivers.KeepAliveReceiver" />
 
         <!-- Receive ignore 5m, 15m, 30m requests for carb notifications -->
         <receiver android:name=".plugins.aps.loop.CarbSuggestionReceiver" />
@@ -230,8 +261,8 @@
         <activity
             android:name=".setupwizard.SetupWizardActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_setup_wizard"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme"
+            android:label="@string/title_activity_setup_wizard" />
 
         <activity
             android:name=".activities.SingleFragmentActivity"

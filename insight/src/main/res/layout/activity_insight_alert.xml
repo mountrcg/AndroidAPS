@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
     android:animateLayoutChanges="true"
     android:orientation="vertical"
     android:paddingBottom="8dp"
-    android:paddingLeft="24dp"
-    android:paddingRight="24dp"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
     android:paddingTop="20dp">
 
     <ImageView
         android:id="@+id/icon"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:tint="#FFFFFF" />
+        app:tint="#FFFFFF" />
 
     <TextView
         android:id="@+id/error_code"
@@ -48,17 +49,17 @@
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/mute"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            style="@style/OkCancelButton.Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="muteClicked"
             android:text="@string/mute_alert" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/confirm"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            style="@style/OkCancelButton.Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="confirmClicked"

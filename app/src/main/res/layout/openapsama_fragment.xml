@@ -15,9 +15,9 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                style="@style/GrayButton"
                 android:id="@+id/run"
-                style="?android:attr/buttonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/openapsma_run" />
@@ -27,7 +27,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="match_parent"
@@ -55,7 +56,6 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:paddingStart="5dp"
-                android:textColor="@android:color/white"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -63,11 +63,11 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/list_delimiter" />
+            android:background="?android:attr/dividerHorizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -81,15 +81,24 @@
                 android:gravity="center_horizontal"
                 android:paddingEnd="5dp"
                 android:text="@string/openapsma_inputparameters_label"
-                android:textColor="@android:color/white"
                 android:textSize="14sp" />
 
         </LinearLayout>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dip"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="?android:attr/dividerHorizontal" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="match_parent"
@@ -117,7 +126,6 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:paddingStart="5dp"
-                android:textColor="@android:color/white"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -125,16 +133,17 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/list_delimiter" />
+            android:background="?android:attr/dividerHorizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="match_parent"
@@ -162,7 +171,6 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:paddingStart="5dp"
-                android:textColor="@android:color/white"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -170,16 +178,17 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/list_delimiter" />
+            android:background="?android:attr/dividerHorizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="match_parent"
@@ -207,7 +216,6 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:paddingStart="5dp"
-                android:textColor="@android:color/white"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -215,16 +223,17 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/list_delimiter" />
+            android:background="?android:attr/dividerHorizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="match_parent"
@@ -252,7 +261,6 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:paddingStart="5dp"
-                android:textColor="@android:color/white"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -260,16 +268,17 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/list_delimiter" />
+            android:background="?android:attr/dividerHorizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="match_parent"
@@ -297,7 +306,6 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:paddingStart="5dp"
-                android:textColor="@android:color/white"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -305,16 +313,17 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/list_delimiter" />
+            android:background="?android:attr/dividerHorizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="match_parent"
@@ -342,7 +351,6 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:paddingStart="5dp"
-                android:textColor="@android:color/white"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -350,16 +358,17 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/list_delimiter" />
+            android:background="?android:attr/dividerHorizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="match_parent"
@@ -387,7 +396,6 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:paddingStart="5dp"
-                android:textColor="@android:color/white"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -395,11 +403,11 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/list_delimiter" />
+            android:background="?android:attr/dividerHorizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -413,24 +421,33 @@
                 android:gravity="center_horizontal"
                 android:paddingEnd="5dp"
                 android:text="@string/result"
-                android:textColor="@android:color/white"
                 android:textSize="14sp" />
 
         </LinearLayout>
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="0dip"
-            android:layout_marginLeft="20dp"
+            android:layout_height="2dip"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/list_delimiter" />
+            android:background="?android:attr/dividerHorizontal" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="?android:attr/dividerHorizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="match_parent"
@@ -458,7 +475,6 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:paddingStart="5dp"
-                android:textColor="@android:color/white"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -466,16 +482,17 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/list_delimiter" />
+            android:background="?android:attr/dividerHorizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="match_parent"
@@ -503,7 +520,6 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:paddingStart="5dp"
-                android:textColor="@android:color/white"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -511,16 +527,17 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/list_delimiter" />
+            android:background="?android:attr/dividerHorizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="match_parent"
@@ -548,7 +565,6 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:paddingStart="5dp"
-                android:textColor="@android:color/white"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -556,11 +572,11 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/list_delimiter" />
+            android:background="?android:attr/dividerHorizontal" />
 
     </LinearLayout>
 

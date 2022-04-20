@@ -22,7 +22,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="25pt"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:gravity="center_vertical"
                     android:text="@string/rileylink_title"
                     android:textColor="@android:color/holo_blue_dark" />
@@ -34,12 +34,13 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="58dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_weight="35"
                     android:gravity="center_vertical"
                     android:text="@string/rileylink_address" />
@@ -48,7 +49,7 @@
                     android:id="@+id/rls_t1_configured_riley_link_address"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="65"
                     android:gravity="center_vertical"
                     android:text="         "
@@ -61,12 +62,13 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="58dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_weight="35"
                     android:gravity="center_vertical"
                     android:text="@string/rileylink_name" />
@@ -75,7 +77,7 @@
                     android:id="@+id/rls_t1_configured_riley_link_name"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="65"
                     android:gravity="center_vertical"
                     android:text="         "
@@ -90,12 +92,13 @@
                 android:layout_marginBottom="5dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="58dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_weight="35"
                     android:gravity="center_vertical"
                     android:text="@string/rileylink_battery_level" />
@@ -104,13 +107,12 @@
                     android:id="@+id/rls_t1_battery_level"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="65"
                     android:gravity="center_vertical"
                     android:text="         "
                     android:textAlignment="center" />
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -118,12 +120,13 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="58dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_weight="35"
                     android:gravity="center_vertical"
                     android:text="@string/rileylink_connection_status" />
@@ -132,13 +135,12 @@
                     android:id="@+id/rls_t1_connection_status"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="65"
                     android:gravity="center_vertical"
                     android:text="         "
                     android:textAlignment="center" />
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -151,7 +153,7 @@
                 <TextView
                     android:layout_width="58dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_weight="35"
                     android:gravity="center_vertical"
                     android:text="@string/rileylink_connection_error" />
@@ -160,7 +162,7 @@
                     android:id="@+id/rls_t1_connection_error"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="65"
                     android:gravity="center_vertical"
                     android:text="         "
@@ -173,12 +175,13 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="58dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_weight="35"
                     android:gravity="center_vertical"
                     android:text="@string/rileylink_firmware_version" />
@@ -187,7 +190,7 @@
                     android:id="@+id/rls_t1_firmware_version"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="65"
                     android:gravity="center_vertical"
                     android:text="         "
@@ -203,7 +206,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="25pt"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:gravity="center_vertical"
                     android:text="@string/rileylink_device"
                     android:textColor="@android:color/holo_blue_dark" />
@@ -215,12 +218,13 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="58dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_weight="35"
                     android:gravity="center_vertical"
                     android:text="@string/rileylink_device_type" />
@@ -229,7 +233,7 @@
                     android:id="@+id/rls_t1_device_type"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="65"
                     android:gravity="center_vertical"
                     android:text="        "
@@ -249,12 +253,13 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:focusable="true">
 
                     <TextView
                         android:layout_width="58dp"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginStart="30dp"
                         android:layout_weight="35"
                         android:gravity="center_vertical"
                         android:text="@string/rileylink_configured_device_model" />
@@ -263,7 +268,7 @@
                         android:id="@+id/rls_t1_configured_device_model"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:layout_weight="65"
                         android:gravity="center_vertical"
                         android:text="        "
@@ -276,12 +281,13 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:focusable="true">
 
                     <TextView
                         android:layout_width="58dp"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginStart="30dp"
                         android:layout_weight="35"
                         android:gravity="center_vertical"
                         android:text="@string/rileylink_connected_device_model" />
@@ -290,7 +296,7 @@
                         android:id="@+id/rls_t1_connected_device_model"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:layout_weight="65"
                         android:gravity="center_vertical"
                         android:text="        "
@@ -305,12 +311,13 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="58dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_weight="35"
                     android:gravity="center_vertical"
                     android:text="@string/rileylink_pump_serial_number" />
@@ -319,13 +326,12 @@
                     android:id="@+id/rls_t1_serial_number"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="65"
                     android:gravity="center_vertical"
                     android:text="        "
                     android:textAlignment="center" />
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -333,12 +339,13 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="58dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_weight="35"
                     android:gravity="center_vertical"
                     android:text="@string/rileylink_pump_frequency" />
@@ -347,7 +354,7 @@
                     android:id="@+id/rls_t1_pump_frequency"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="65"
                     android:gravity="center_vertical"
                     android:text="        "
@@ -360,12 +367,13 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="58dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_weight="35"
                     android:gravity="center_vertical"
                     android:text="@string/rileylink_last_used_frequency" />
@@ -374,13 +382,12 @@
                     android:id="@+id/rls_t1_last_used_frequency"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="65"
                     android:gravity="center_vertical"
                     android:text="        "
                     android:textAlignment="center" />
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -388,12 +395,13 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="58dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_weight="35"
                     android:gravity="center_vertical"
                     android:text="@string/rileylink_last_device_contact" />
@@ -402,7 +410,7 @@
                     android:id="@+id/rls_t1_last_device_contact"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="65"
                     android:gravity="center_vertical"
                     android:text="        "

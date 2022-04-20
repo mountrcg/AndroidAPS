@@ -25,14 +25,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:paddingRight="5dp"
+                    android:paddingEnd="5dp"
                     android:text="@string/basebasalrate_label"
                     android:textSize="14sp" />
 
@@ -52,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:paddingLeft="5dp"
+                    android:paddingStart="5dp"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -61,22 +62,23 @@
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/list_delimiter" />
+                android:background="?android:attr/dividerHorizontal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:paddingRight="5dp"
+                    android:paddingEnd="5dp"
                     android:text="@string/tempbasal_label"
                     android:textSize="14sp" />
 
@@ -96,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:paddingLeft="5dp"
+                    android:paddingStart="5dp"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -105,22 +107,23 @@
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/list_delimiter" />
+                android:background="?android:attr/dividerHorizontal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:paddingRight="5dp"
+                    android:paddingEnd="5dp"
                     android:text="@string/virtualpump_extendedbolus_label"
                     android:textSize="14sp" />
 
@@ -140,7 +143,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:paddingLeft="5dp"
+                    android:paddingStart="5dp"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -149,22 +152,23 @@
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/list_delimiter" />
+                android:background="?android:attr/dividerHorizontal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:paddingRight="5dp"
+                    android:paddingEnd="5dp"
                     android:text="@string/battery_label"
                     android:textSize="14sp" />
 
@@ -184,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:paddingLeft="5dp"
+                    android:paddingStart="5dp"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -194,22 +198,23 @@
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/list_delimiter" />
+                android:background="?android:attr/dividerHorizontal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:paddingRight="5dp"
+                    android:paddingEnd="5dp"
                     android:text="@string/reservoir_label"
                     android:textSize="14sp" />
 
@@ -229,7 +234,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:paddingLeft="5dp"
+                    android:paddingStart="5dp"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -239,22 +244,23 @@
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/list_delimiter" />
+                android:background="?android:attr/dividerHorizontal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:paddingRight="5dp"
+                    android:paddingEnd="5dp"
                     android:text="@string/serialnumber"
                     android:textSize="14sp" />
 
@@ -274,7 +280,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:paddingLeft="5dp"
+                    android:paddingStart="5dp"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -284,22 +290,23 @@
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/list_delimiter" />
+                android:background="?android:attr/dividerHorizontal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:paddingRight="5dp"
+                    android:paddingEnd="5dp"
                     android:text="@string/virtualpump_type"
                     android:textSize="14sp" />
 
@@ -319,7 +326,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:paddingLeft="5dp"
+                    android:paddingStart="5dp"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -329,22 +336,23 @@
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/list_delimiter" />
+                android:background="?android:attr/dividerHorizontal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:paddingRight="5dp"
+                    android:paddingEnd="5dp"
                     android:text="@string/virtualpump_definition"
                     android:textSize="14sp" />
 
@@ -364,12 +372,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:paddingLeft="5dp"
+                    android:paddingStart="5dp"
                     android:textSize="14sp" />
 
             </LinearLayout>
-
-
 
         </LinearLayout>
     </ScrollView>

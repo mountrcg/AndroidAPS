@@ -255,6 +255,7 @@ class Translator @Inject internal constructor(
         Sources.MM640g                             -> TODO()
         Sources.NSClientSource                     -> TODO()
         Sources.PocTech                            -> TODO()
+        Sources.Aidex                              -> TODO()
         Sources.Tomato                             -> TODO()
         Sources.Xdrip                              -> TODO()
         Sources.LocalProfile                       -> TODO()
@@ -287,7 +288,7 @@ class Translator @Inject internal constructor(
         Sources.Loop       -> rh.gs(R.string.loop)
         Sources.NSClient   -> rh.gs(R.string.ns)
         Sources.Pump       -> rh.gs(R.string.pump)
-        Sources.SMS        -> rh.gs(R.string.smb_shortname)
+        Sources.SMS        -> rh.gs(R.string.sms)
         Sources.Wear       -> rh.gs(R.string.wear)
         Sources.Unknown    -> rh.gs(R.string.unknown)
 
