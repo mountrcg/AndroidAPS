@@ -1,5 +1,6 @@
 package info.nightscout.androidaps
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
@@ -343,7 +344,7 @@ class MainActivity : NoSplashAppCompatActivity() {
                 val messageSpanned = SpannableString(message)
                 Linkify.addLinks(messageSpanned, Linkify.WEB_URLS)
                 AlertDialog.Builder(this)
-                    .setTitle(rh.gs(R.string.app_name) + " " + BuildConfig.VERSION + "+autoISF2.2.6")
+                    .setTitle(rh.gs(R.string.app_name) + " " + BuildConfig.VERSION + "autoisf2.2.6")
                     .setIcon(iconsProvider.getIcon())
                     .setMessage(messageSpanned)
                     .setPositiveButton(rh.gs(R.string.ok), null)
