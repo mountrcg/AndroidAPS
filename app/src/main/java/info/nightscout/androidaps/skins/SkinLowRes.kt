@@ -42,13 +42,6 @@ class SkinLowRes @Inject constructor(private val config: Config) : SkinInterface
         if (!config.NSCLIENT && isLandscape) moveButtonsLayout(binding.root)
 
         binding.apply {
-            loopCard.elevation = 0F
-            loopCard.radius = 0F
-            val param = (loopCard.layoutParams as ViewGroup.MarginLayoutParams).apply {
-                setMargins(0,0,0,0)
-            }
-            loopCard.layoutParams = param
-
             infoCard.elevation = 0F
             infoCard.radius = 0F
             val paramInfo = (infoCard.layoutParams as ViewGroup.MarginLayoutParams).apply {
@@ -77,6 +70,9 @@ class SkinLowRes @Inject constructor(private val config: Config) : SkinInterface
                 setMargins(0,0,0,0)
             }
             graphCard.layoutParams = paramGraph
+
+            activeProfile.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+            tempTarget.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
         }
 
     }

@@ -10,31 +10,30 @@ import info.nightscout.androidaps.R
 import info.nightscout.androidaps.database.AppRepository
 import info.nightscout.androidaps.database.entities.GlucoseValue
 import info.nightscout.androidaps.database.transactions.CgmSourceTransaction
-import info.nightscout.androidaps.interfaces.BgSource
-import info.nightscout.androidaps.interfaces.PluginBase
-import info.nightscout.androidaps.interfaces.PluginDescription
-import info.nightscout.androidaps.interfaces.PluginType
+import info.nightscout.androidaps.interfaces.*
+import info.nightscout.androidaps.receivers.DataWorker
+import info.nightscout.androidaps.receivers.Intents
+import info.nightscout.androidaps.interfaces.BuildHelper
 import info.nightscout.shared.logging.AAPSLogger
 import info.nightscout.shared.logging.LTag
-import info.nightscout.androidaps.receivers.DataWorker
-import info.nightscout.androidaps.services.Intents
-import info.nightscout.androidaps.utils.resources.ResourceHelper
 import javax.inject.Inject
 import javax.inject.Singleton
-import kotlin.math.log
 
 @Singleton
 class AidexPlugin @Inject constructor(
     injector: HasAndroidInjector,
     rh: ResourceHelper,
-    aapsLogger: AAPSLogger
-) : PluginBase(PluginDescription()
-    .mainType(PluginType.BGSOURCE)
-    .fragmentClass(BGSourceFragment::class.java.name)
-    .pluginIcon((R.drawable.ic_blooddrop_48))
-    .pluginName(R.string.aidex)
-     .shortName(R.string.aidex_short)
-    .description(R.string.description_source_aidex),
+    aapsLogger: AAPSLogger,
+    private val buildHelper: BuildHelper,
+    private val config: Config
+) : PluginBase(
+    PluginDescription()
+        .mainType(PluginType.BGSOURCE)
+        .fragmentClass(BGSourceFragment::class.java.name)
+        .pluginIcon((R.drawable.ic_blooddrop_48))
+        .pluginName(R.string.aidex)
+        .shortName(R.string.aidex_short)
+        .description(R.string.description_source_aidex),
     aapsLogger, rh, injector
 ), BgSource {
 
@@ -43,10 +42,15 @@ class AidexPlugin @Inject constructor(
     /**
      * Aidex App doesn't have upload to NS
      */
-    override fun shouldUploadToNs(glucoseValue: GlucoseValue): Boolean  = true
+    override fun shouldUploadToNs(glucoseValue: GlucoseValue): Boolean = true
 
     override fun advancedFilteringSupported(): Boolean {
         return advancedFiltering
+    }
+
+    // Allow only for pumpcontrol or dev & engineering_mode
+    override fun specialEnableCondition(): Boolean {
+        return config.APS.not() || buildHelper.isDev() && buildHelper.isEngineeringMode()
     }
 
     // cannot be inner class because of needed injection

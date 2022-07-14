@@ -91,7 +91,7 @@
         <!---Dialog  -->
         <item name="activity_title_backgroundColor">@color/dialog_title_background</item>
         <!---Automation  -->
-        <item name="ribbonDefaultColor">@color/ribbonDefault</item>
+        <item name="ribbonDefaultColor">@color/buttonBackground</item>
         <item name="ribbonWarningColor">@color/ribbonWarning</item>
         <item name="ribbonCriticalColor">@color/ribbonCritical</item>
         <item name="ribbonTextDefaultColor">@color/ribbonTextDefault</item>
@@ -243,7 +243,10 @@
         <item name="isCompletedColor">@color/isCompleted</item>
         <item name="isNotCompletedColor">@color/isNotCompleted</item>
         <!---Nightscout client TitelColor -->
-        <item name="nsTitleColor">@color/defaulttext</item>
+        <item name="nsTitleColor">@color/defaultText</item>
+        <!---Icons in Loop area -->
+        <item name="profileColor">@color/black</item>
+        <item name="crossTargetColor">@color/white</item>
     </style>
 
     <style name="Aaps_ActionBarStyle" parent="@style/Widget.AppCompat.ActionBar">
@@ -345,7 +348,11 @@
     </style>
 
     <style name="ButtonSmallFontStyle" parent="GrayButton">
-        <item name="android:textSize">10sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:textSize">11dp</item>
     </style>
 
     <style name="ButtonMediumFontStyle" parent="GrayButton">

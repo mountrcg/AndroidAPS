@@ -30,7 +30,7 @@ import info.nightscout.androidaps.utils.alertDialogs.OKDialog
 import info.nightscout.androidaps.utils.extensions.toSignedString
 import info.nightscout.androidaps.utils.protection.ProtectionCheck
 import info.nightscout.androidaps.utils.protection.ProtectionCheck.Protection.BOLUS
-import info.nightscout.androidaps.utils.resources.ResourceHelper
+import info.nightscout.androidaps.interfaces.ResourceHelper
 import info.nightscout.shared.SafeParse
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
@@ -58,9 +58,9 @@ class InsulinDialog : DialogFragmentWithDate() {
 
     companion object {
 
-        private const val PLUS1_DEFAULT = 0.5
-        private const val PLUS2_DEFAULT = 1.0
-        private const val PLUS3_DEFAULT = 2.0
+        const val PLUS1_DEFAULT = 0.5
+        const val PLUS2_DEFAULT = 1.0
+        const val PLUS3_DEFAULT = 2.0
     }
 
     private var queryingProtection = false

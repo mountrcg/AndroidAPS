@@ -28,7 +28,8 @@ import info.nightscout.androidaps.plugins.pump.medtronic.defs.PumpBolusType
 import info.nightscout.androidaps.plugins.pump.medtronic.driver.MedtronicPumpStatus
 import info.nightscout.androidaps.plugins.pump.medtronic.util.MedtronicConst
 import info.nightscout.androidaps.plugins.pump.medtronic.util.MedtronicUtil
-import info.nightscout.androidaps.utils.resources.ResourceHelper
+import info.nightscout.androidaps.interfaces.ResourceHelper
+import info.nightscout.androidaps.plugins.pump.common.sync.PumpSyncStorage
 import info.nightscout.shared.sharedPreferences.SP
 import org.apache.commons.lang3.StringUtils
 import org.joda.time.LocalDateTime
@@ -57,7 +58,7 @@ class MedtronicHistoryData @Inject constructor(
     val medtronicPumpHistoryDecoder: MedtronicPumpHistoryDecoder,
     val medtronicPumpStatus: MedtronicPumpStatus,
     val pumpSync: PumpSync,
-    val pumpSyncStorage: info.nightscout.androidaps.plugins.pump.common.sync.PumpSyncStorage
+    val pumpSyncStorage: PumpSyncStorage
 ) {
 
     val allHistory: MutableList<PumpHistoryEntry> = mutableListOf()
@@ -357,7 +358,7 @@ class MedtronicHistoryData @Inject constructor(
         aapsLogger.debug(LTag.PUMP, String.format(Locale.ENGLISH, "ProcessHistoryData: TBRs Processed [count=%d, items=%s]", tbrs.size, gson.toJson(tbrs)))
         if (tbrs.isNotEmpty()) {
             try {
-                processTBREntries(tbrs)
+                processTBREntries(tbrs, rewindRecords)
             } catch (ex: Exception) {
                 aapsLogger.error(LTag.PUMP, "ProcessHistoryData: Error processing TBR entries: " + ex.message, ex)
                 throw ex
@@ -397,7 +398,7 @@ class MedtronicHistoryData @Inject constructor(
                 continue
             }
             if (primeRecord.atechDateTime > maxAllowedTimeInPast) {
-                if (lastPrimeRecordTime != 0L && lastPrimeRecordTime < primeRecord.atechDateTime) {
+                if (lastPrimeRecordTime < primeRecord.atechDateTime) {
                     lastPrimeRecordTime = primeRecord.atechDateTime
                     lastPrimeRecord = primeRecord
                 }
@@ -582,7 +583,7 @@ class MedtronicHistoryData @Inject constructor(
         }
     }
 
-    private fun processTBREntries(entryList: MutableList<PumpHistoryEntry>) {
+    private fun processTBREntries(entryList: MutableList<PumpHistoryEntry>, rewindList: MutableList<PumpHistoryEntry>) {
         entryList.reverse()
         val tbr = entryList[0].getDecodedDataEntry("Object") as TempBasalPair
 //        var readOldItem = false
@@ -606,7 +607,7 @@ class MedtronicHistoryData @Inject constructor(
 
         val tbrRecords = pumpSyncStorage.getTBRs()
 
-        val processList: MutableList<TempBasalProcessDTO> = createTBRProcessList(entryList)
+        val processList: MutableList<TempBasalProcessDTO> = createTBRProcessList(entryList, rewindList)
 
         if (processList.isNotEmpty()) {
             for (tempBasalProcessDTO in processList) {
@@ -729,7 +730,8 @@ class MedtronicHistoryData @Inject constructor(
         } // collection
     }
 
-    fun createTBRProcessList(entryList: MutableList<PumpHistoryEntry>) : MutableList<TempBasalProcessDTO> {
+
+    fun createTBRProcessList(entryList: MutableList<PumpHistoryEntry>, rewindList: MutableList<PumpHistoryEntry>) : MutableList<TempBasalProcessDTO> {
 
         aapsLogger.debug(LTag.PUMP, "${ProcessHistoryRecord.TBR.description}  List (before filter): ${gson.toJson(entryList)}")
 
@@ -792,6 +794,23 @@ class MedtronicHistoryData @Inject constructor(
         if (removalList.isNotEmpty()) {
             for (tempBasalProcessDTO in removalList) {
                 processList.remove(tempBasalProcessDTO)
+            }
+        }
+
+        // see if rewind items, need to fix any of current tempBasalProcessDTO items (bug 1724)
+        if (rewindList.isNotEmpty()) {
+            for (rewindEntry in rewindList) {
+                for (tempBasalProcessDTO in processList) {
+                    if (tempBasalProcessDTO.itemTwo==null) {
+                        val endTime: Long = DateTimeUtil.getATDWithAddedMinutes(tempBasalProcessDTO.itemOne.atechDateTime, tempBasalProcessDTO.itemOneTbr!!.durationMinutes)
+
+                        if ((rewindEntry.atechDateTime > tempBasalProcessDTO.itemOne.atechDateTime) &&
+                            (rewindEntry.atechDateTime < endTime)) {
+                            tempBasalProcessDTO.itemTwo = rewindEntry
+                            continue
+                        }
+                    }
+                }
             }
         }
 
@@ -1174,7 +1193,7 @@ class MedtronicHistoryData @Inject constructor(
         return getFilteredItems(newHistory, entryTypes)
     }
 
-    private fun getFilteredItems(entryType: PumpHistoryEntryType): MutableList<PumpHistoryEntry> {
+    fun getFilteredItems(entryType: PumpHistoryEntryType): MutableList<PumpHistoryEntry> {
         return getFilteredItems(newHistory, setOf(entryType))
     }
 
@@ -1188,7 +1207,7 @@ class MedtronicHistoryData @Inject constructor(
         }
     }
 
-    private fun getFilteredItems(inList: MutableList<PumpHistoryEntry>?, entryType: PumpHistoryEntryType): MutableList<PumpHistoryEntry> {
+    fun getFilteredItems(inList: MutableList<PumpHistoryEntry>?, entryType: PumpHistoryEntryType): MutableList<PumpHistoryEntry> {
         return getFilteredItems(inList, setOf(entryType))
     }
 

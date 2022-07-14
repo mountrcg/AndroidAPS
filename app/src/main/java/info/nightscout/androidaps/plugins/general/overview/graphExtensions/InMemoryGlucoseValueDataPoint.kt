@@ -6,10 +6,9 @@ import info.nightscout.androidaps.core.R
 import info.nightscout.androidaps.data.InMemoryGlucoseValue
 import info.nightscout.androidaps.interfaces.GlucoseUnit
 import info.nightscout.androidaps.interfaces.ProfileFunction
-import info.nightscout.androidaps.utils.resources.ResourceHelper
-import javax.inject.Inject
+import info.nightscout.androidaps.interfaces.ResourceHelper
 
-class InMemoryGlucoseValueDataPoint @Inject constructor(
+class InMemoryGlucoseValueDataPoint(
     val data: InMemoryGlucoseValue,
     private val profileFunction: ProfileFunction,
     private val rh: ResourceHelper
@@ -21,7 +20,7 @@ class InMemoryGlucoseValueDataPoint @Inject constructor(
     override fun getX(): Double = data.timestamp.toDouble()
     override fun getY(): Double = valueToUnits(profileFunction.getUnits())
     override fun setY(y: Double) {}
-    override val label: String? = null
+    override val label: String = ""
     override val duration = 0L
     override val shape = PointsWithLabelGraphSeries.Shape.BUCKETED_BG
     override val size = 0.3f

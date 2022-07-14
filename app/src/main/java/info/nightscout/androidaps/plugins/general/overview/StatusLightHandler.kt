@@ -1,6 +1,5 @@
 package info.nightscout.androidaps.plugins.general.overview
 
-import android.graphics.Color
 import android.widget.TextView
 import androidx.annotation.StringRes
 import info.nightscout.androidaps.R
@@ -16,7 +15,7 @@ import info.nightscout.androidaps.plugins.pump.omnipod.eros.driver.definition.Om
 import info.nightscout.androidaps.utils.DateUtil
 import info.nightscout.androidaps.utils.DecimalFormatter
 import info.nightscout.androidaps.utils.WarnColors
-import info.nightscout.androidaps.utils.resources.ResourceHelper
+import info.nightscout.androidaps.interfaces.ResourceHelper
 import info.nightscout.shared.sharedPreferences.SP
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -97,7 +96,7 @@ class StatusLightHandler @Inject constructor(
         if (level > OmnipodConstants.MAX_RESERVOIR_READING) {
             @Suppress("SetTextI18n")
             view?.text = " 50+$units"
-            view?.setTextColor(Color.WHITE)
+            view?.setTextColor(rh.gac(view.context, R.attr.defaultTextColor))
         } else {
             handleLevel(view, criticalSetting, criticalDefaultValue, warnSetting, warnDefaultValue, level, units)
         }

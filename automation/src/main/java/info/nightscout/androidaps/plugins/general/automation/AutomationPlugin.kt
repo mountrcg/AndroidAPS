@@ -24,7 +24,6 @@ import info.nightscout.androidaps.services.LocationServiceHelper
 import info.nightscout.androidaps.utils.DateUtil
 import info.nightscout.androidaps.utils.FabricPrivacy
 import info.nightscout.androidaps.utils.T
-import info.nightscout.androidaps.utils.resources.ResourceHelper
 import info.nightscout.androidaps.utils.rx.AapsSchedulers
 import info.nightscout.shared.logging.AAPSLogger
 import info.nightscout.shared.logging.LTag
@@ -149,7 +148,7 @@ class AutomationPlugin @Inject constructor(
 
     private fun storeToSP() {
         val array = JSONArray()
-        val iterator = ArrayList(automationEvents).iterator()
+        val iterator = synchronized(this) { automationEvents.toMutableList().iterator() }
         try {
             while (iterator.hasNext()) {
                 val event = iterator.next()
@@ -162,6 +161,7 @@ class AutomationPlugin @Inject constructor(
         sp.putString(keyAutomationEvents, array.toString())
     }
 
+    @Synchronized
     private fun loadFromSP() {
         automationEvents.clear()
         val data = sp.getString(keyAutomationEvents, "")
@@ -180,8 +180,7 @@ class AutomationPlugin @Inject constructor(
             automationEvents.add(AutomationEvent(injector).fromJSON(event, 0))
     }
 
-    @Synchronized
-    private fun processActions() {
+    internal fun processActions() {
         var commonEventsEnabled = true
         if (loop.isSuspended || !(loop as PluginBase).isEnabled()) {
             aapsLogger.debug(LTag.AUTOMATION, "Loop deactivated")
@@ -209,12 +208,16 @@ class AutomationPlugin @Inject constructor(
         }
 
         aapsLogger.debug(LTag.AUTOMATION, "processActions")
-        val iterator: MutableIterator<AutomationEvent> = automationEvents.iterator()
+        val iterator = synchronized(this) { automationEvents.toMutableList().iterator() }
         while (iterator.hasNext()) {
             val event = iterator.next()
             if (event.isEnabled && !event.userAction && event.shouldRun())
-                if (event.systemAction || commonEventsEnabled) processEvent(event)
+                if (event.systemAction || commonEventsEnabled) {
+                    processEvent(event)
+                    if (event.hasStopProcessing()) break
+                }
         }
+
         // we cannot detect connected BT devices
         // so let's collect all connection/disconnections between 2 runs of processActions()
         // TriggerBTDevice can pick up and process these events
@@ -256,13 +259,14 @@ class AutomationPlugin @Inject constructor(
             }
             SystemClock.sleep(1100)
             event.lastRun = dateUtil.now()
-            if (event.autoRemove) automationEvents.remove(event)
+            if (event.autoRemove) remove(event)
         }
     }
 
     @Synchronized
     fun add(event: AutomationEvent) {
         automationEvents.add(event)
+        event.position = automationEvents.size - 1
         rxBus.send(EventAutomationDataChanged())
     }
 
@@ -300,9 +304,12 @@ class AutomationPlugin @Inject constructor(
     }
 
     @Synchronized
+    fun remove(event: AutomationEvent) {
+        automationEvents.remove(event)
+    }
+
     fun at(index: Int) = automationEvents[index]
 
-    @Synchronized
     fun size() = automationEvents.size
 
     @Synchronized
@@ -310,10 +317,9 @@ class AutomationPlugin @Inject constructor(
         Collections.swap(automationEvents, fromPosition, toPosition)
     }
 
-    @Synchronized
     fun userEvents(): List<AutomationEvent> {
         val list = mutableListOf<AutomationEvent>()
-        val iterator: MutableIterator<AutomationEvent> = automationEvents.iterator()
+        val iterator = synchronized(this) { automationEvents.toMutableList().iterator() }
         while (iterator.hasNext()) {
             val event = iterator.next()
             if (event.userAction && event.isEnabled) list.add(event)
@@ -327,6 +333,7 @@ class AutomationPlugin @Inject constructor(
             //ActionLoopEnable(injector),
             //ActionLoopResume(injector),
             //ActionLoopSuspend(injector),
+            ActionStopProcessing(injector),
             ActionStartTempTarget(injector),
             ActionStopTempTarget(injector),
             ActionNotification(injector),
@@ -334,6 +341,7 @@ class AutomationPlugin @Inject constructor(
             ActionCarePortalEvent(injector),
             ActionProfileSwitchPercent(injector),
             ActionProfileSwitch(injector),
+            ActionRunAutotune(injector),
             ActionSendSMS(injector)
         )
     }

@@ -3,7 +3,6 @@ package info.nightscout.androidaps.plugins.profile.local
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +23,7 @@ import info.nightscout.androidaps.extensions.toVisibility
 import info.nightscout.androidaps.interfaces.ActivePlugin
 import info.nightscout.androidaps.interfaces.GlucoseUnit
 import info.nightscout.androidaps.interfaces.Profile
+import info.nightscout.androidaps.interfaces.ProfileFunction
 import info.nightscout.androidaps.logging.UserEntryLogger
 import info.nightscout.androidaps.plugins.bus.RxBus
 import info.nightscout.androidaps.plugins.profile.local.events.EventLocalProfileChanged
@@ -33,11 +33,12 @@ import info.nightscout.androidaps.utils.FabricPrivacy
 import info.nightscout.androidaps.utils.HardLimits
 import info.nightscout.androidaps.utils.alertDialogs.OKDialog
 import info.nightscout.androidaps.utils.protection.ProtectionCheck
-import info.nightscout.androidaps.utils.resources.ResourceHelper
+import info.nightscout.androidaps.interfaces.ResourceHelper
 import info.nightscout.androidaps.utils.rx.AapsSchedulers
 import info.nightscout.androidaps.utils.ui.TimeListEdit
 import info.nightscout.shared.SafeParse
 import info.nightscout.shared.logging.AAPSLogger
+import info.nightscout.shared.logging.LTag
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import java.math.RoundingMode
@@ -52,6 +53,7 @@ class LocalProfileFragment : DaggerFragment() {
     @Inject lateinit var activePlugin: ActivePlugin
     @Inject lateinit var fabricPrivacy: FabricPrivacy
     @Inject lateinit var localProfilePlugin: LocalProfilePlugin
+    @Inject lateinit var profileFunction: ProfileFunction
     @Inject lateinit var hardLimits: HardLimits
     @Inject lateinit var protectionCheck: ProtectionCheck
     @Inject lateinit var dateUtil: DateUtil
@@ -117,6 +119,11 @@ class LocalProfileFragment : DaggerFragment() {
         })
         binding.diaLabel.labelFor = binding.dia.editTextId
         binding.unlock.setOnClickListener { queryProtection() }
+
+        val profiles = localProfilePlugin.profile?.getProfileList() ?: ArrayList()
+        val activeProfile = profileFunction.getProfileName()
+        val profileIndex = profiles.indexOf(activeProfile)
+        localProfilePlugin.currentProfileIndex = if (profileIndex >= 0) profileIndex else 0
     }
 
     fun build() {
@@ -196,7 +203,7 @@ class LocalProfileFragment : DaggerFragment() {
                 roundUp(Profile.fromMgdlToUnits(HardLimits.VERY_HARD_LIMIT_MAX_BG[0], GlucoseUnit.MMOL)),
                 roundDown(Profile.fromMgdlToUnits(HardLimits.VERY_HARD_LIMIT_MAX_BG[1], GlucoseUnit.MMOL))
             )
-            Log.i("TimeListEdit", "build: range1" + range1[0] + " " + range1[1] + " range2" + range2[0] + " " + range2[1])
+            aapsLogger.info(LTag.CORE, "TimeListEdit", "build: range1" + range1[0] + " " + range1[1] + " range2" + range2[0] + " " + range2[1])
             TimeListEdit(
                 context,
                 aapsLogger,
@@ -387,13 +394,14 @@ class LocalProfileFragment : DaggerFragment() {
 
     private fun processVisibility(position: Int) {
         binding.diaPlaceholder.visibility = (position == 0).toVisibility()
-        binding.ic.visibility  = (position == 1).toVisibility()
-        binding.isf.visibility  = (position == 2).toVisibility()
-        binding.basal.visibility  = (position == 3).toVisibility()
-        binding.target.visibility  = (position == 4).toVisibility()
+        binding.ic.visibility = (position == 1).toVisibility()
+        binding.isf.visibility = (position == 2).toVisibility()
+        binding.basal.visibility = (position == 3).toVisibility()
+        binding.target.visibility = (position == 4).toVisibility()
     }
 
     private fun updateProtectedUi() {
+        _binding ?: return
         val isLocked = protectionCheck.isLocked(ProtectionCheck.Protection.PREFERENCES)
         binding.mainLayout.visibility = isLocked.not().toVisibility()
         binding.unlock.visibility = isLocked.toVisibility()

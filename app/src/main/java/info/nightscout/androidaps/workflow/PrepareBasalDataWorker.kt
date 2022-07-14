@@ -16,7 +16,7 @@ import info.nightscout.androidaps.plugins.general.overview.OverviewData
 import info.nightscout.androidaps.plugins.general.overview.graphExtensions.ScaledDataPoint
 import info.nightscout.androidaps.plugins.iob.iobCobCalculator.events.EventIobCalculationProgress
 import info.nightscout.androidaps.receivers.DataWorker
-import info.nightscout.androidaps.utils.resources.ResourceHelper
+import info.nightscout.androidaps.interfaces.ResourceHelper
 import java.util.ArrayList
 import javax.inject.Inject
 import kotlin.math.max
@@ -47,7 +47,6 @@ class PrepareBasalDataWorker(
             ?: return Result.failure(workDataOf("Error" to "missing input data"))
 
         rxBus.send(EventIobCalculationProgress(CalculationWorkflow.ProgressData.PREPARE_BASAL_DATA, 0, null))
-        data.overviewData.maxBasalValueFound = 0.0
         val baseBasalArray: MutableList<ScaledDataPoint> = ArrayList()
         val tempBasalArray: MutableList<ScaledDataPoint> = ArrayList()
         val basalLineArray: MutableList<ScaledDataPoint> = ArrayList()
@@ -104,7 +103,6 @@ class PrepareBasalDataWorker(
             lastAbsoluteLineBasal = absoluteLineValue
             lastLineBasal = baseBasalValue
             lastTempBasal = tempBasalValue
-            data.overviewData.maxBasalValueFound = max(data.overviewData.maxBasalValueFound, max(tempBasalValue, baseBasalValue))
             time += 60 * 1000L
         }
 

@@ -72,7 +72,7 @@ import info.nightscout.androidaps.queue.Callback;
 import info.nightscout.androidaps.queue.commands.Command;
 import info.nightscout.androidaps.utils.DateUtil;
 import info.nightscout.androidaps.utils.T;
-import info.nightscout.androidaps.utils.resources.ResourceHelper;
+import info.nightscout.androidaps.interfaces.ResourceHelper;
 import info.nightscout.shared.sharedPreferences.SP;
 
 public class DanaRv2ExecutionService extends AbstractDanaRExecutionService {
@@ -362,7 +362,7 @@ public class DanaRv2ExecutionService extends AbstractDanaRExecutionService {
             if (!danaPump.getBolusStopped()) {
                 mSerialIOThread.sendMessage(start);
             } else {
-                t.insulin = 0d;
+                t.setInsulin(0d);
                 return false;
             }
             while (!danaPump.getBolusStopped() && !start.getFailed()) {

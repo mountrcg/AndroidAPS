@@ -3,10 +3,9 @@ package info.nightscout.androidaps.plugins.general.overview.graphExtensions
 import android.content.Context
 import info.nightscout.androidaps.core.R
 import info.nightscout.androidaps.database.entities.Carbs
-import info.nightscout.androidaps.utils.resources.ResourceHelper
-import javax.inject.Inject
+import info.nightscout.androidaps.interfaces.ResourceHelper
 
-class CarbsDataPoint @Inject constructor(
+class CarbsDataPoint(
     val data: Carbs,
     private val rh: ResourceHelper
 ) : DataPointWithLabelInterface {
