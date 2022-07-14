@@ -180,6 +180,8 @@
     <string name="careportal_newnstreatment_glucosetype">Glucose type</string>
     <string name="overview_tempbasal_button">TempBasal</string>
     <string name="overview_extendedbolus_button">Extended Bolus</string>
+    <string name="overview_tempbasal_label_short">TBR</string>
+    <string name="overview_extended_bolus_short">EB</string>
     <string name="configbuilder_nightscoutversion_label">Nightscout version:</string>
     <string name="missing_carbs">Missing %1$d g</string>
     <string name="exported">Preferences exported</string>
@@ -330,7 +332,8 @@
     <string name="smb_delivery_settings_summary">smb delivery settings:  Set of options to increase the actual SMB size which can be delivered in situations where ISF was strengthened, i.e. fairly low ISF figure.\n\nUSE WITH CAUTION</string>
     <string name="openapsama_enable_autoISF">Use autoISF feature</string>
     <string name="a52_risk_enable">A52 risk enable</string>
-    <string name="a52_risk_enable_summary">Flag to disable Medtronic A52 error safety (should lead to more agressive bolusing)</string>
+    <string name="a52_risk_enable_summary">Flag to disable Medtronic A52 error safety (should
+        lead to more aggressive bolusing)</string>
     <string name="engineering_mode">Engineering mode</string>
     <string name="engineering_mode_summary">Flag to enable engineering mode (UNSAFE)</string>
     <string name="bypass_old_version_check_title">Skip checking for new version (not recommended)</string>

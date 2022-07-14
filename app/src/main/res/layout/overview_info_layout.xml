@@ -257,12 +257,13 @@
         app:layout_constraintTop_toBottomOf="@+id/bg"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/ic_bolus"
+            android:text="@string/iob"
             android:contentDescription="@string/iob" />
+<!--            app:srcCompat="@drawable/ic_bolus"-->
 
         <TextView
             android:id="@+id/iob"
@@ -289,13 +290,15 @@
         tools:ignore="UseCompoundDrawables"
         android:focusable="true">
 
-        <ImageView
+        <TextView
             android:id="@+id/carbs_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/anim_carbs"
+            android:text="@string/cob"
             android:contentDescription="@string/cob" />
+<!--            android:background="@drawable/anim_carbs"-->
+
 
         <TextView
             android:id="@+id/cob"
@@ -321,13 +324,14 @@
         app:layout_constraintTop_toTopOf="@+id/iob_layout"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
+        <TextView
             android:id="@+id/base_basal_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/ic_cp_basal_no_tbr"
+            android:text="@string/overview_tempbasal_label_short"
             android:contentDescription="@string/basal" />
+<!--            app:srcCompat="@drawable/ic_cp_basal_no_tbr"-->
 
         <TextView
             android:id="@+id/base_basal"
@@ -353,12 +357,14 @@
         app:layout_constraintTop_toTopOf="@+id/iob_layout"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/ic_actions_startextbolus"
+            android:text="@string/overview_extended_bolus_short"
             android:contentDescription="@string/extended_bolus" />
+<!--            app:srcCompat="@drawable/ic_actions_startextbolus"-->
+
 
         <TextView
             android:id="@+id/extended_bolus"
@@ -385,13 +391,15 @@
         tools:ignore="UseCompoundDrawables"
         android:focusable="true">
 
-        <ImageView
+        <TextView
             android:id="@+id/sensitivity_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/ic_swap_vert_black_48dp_green"
+            android:text="@string/sensitivity_shortname"
             android:contentDescription="@string/a11y_autosenslabel" />
+<!--            app:srcCompat="@drawable/ic_swap_vert_black_48dp_green"-->
+
 
         <TextView
             android:id="@+id/sensitivity"

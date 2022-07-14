@@ -861,13 +861,13 @@ class OverviewFragment : DaggerFragment(), View.OnClickListener, OnLongClickList
     private fun updateTemporaryBasal() {
         val temporaryBasalText = overviewData.temporaryBasalText(iobCobCalculator)
         val temporaryBasalColor = overviewData.temporaryBasalColor(context, iobCobCalculator)
-        val temporaryBasalIcon = overviewData.temporaryBasalIcon(iobCobCalculator)
+        // val temporaryBasalIcon = overviewData.temporaryBasalIcon(iobCobCalculator)
         val temporaryBasalDialogText = overviewData.temporaryBasalDialogText(iobCobCalculator)
         runOnUiThread {
             _binding ?: return@runOnUiThread
             binding.infoLayout.baseBasal.text = temporaryBasalText
             binding.infoLayout.baseBasal.setTextColor(temporaryBasalColor)
-            binding.infoLayout.baseBasalIcon.setImageResource(temporaryBasalIcon)
+            // binding.infoLayout.baseBasalIcon.setImageResource(temporaryBasalIcon)
             binding.infoLayout.basalLayout.setOnClickListener { activity?.let { OKDialog.show(it, rh.gs(R.string.basal), temporaryBasalDialogText) } }
         }
     }
@@ -1085,11 +1085,11 @@ class OverviewFragment : DaggerFragment(), View.OnClickListener, OnLongClickList
 
     private fun updateSensitivity() {
         _binding ?: return
-        if (sp.getBoolean(R.string.key_openapsama_useautosens, false) && constraintChecker.isAutosensModeEnabled().value()) {
+/*        if (sp.getBoolean(R.string.key_openapsama_useautosens, false) && constraintChecker.isAutosensModeEnabled().value()) {
             binding.infoLayout.sensitivityIcon.setImageResource(R.drawable.ic_swap_vert_black_48dp_green)
         } else {
             binding.infoLayout.sensitivityIcon.setImageResource(R.drawable.ic_x_swap_vert)
-        }
+        }*/
 
         binding.infoLayout.sensitivity.text =
             overviewData.lastAutosensData(iobCobCalculator)?.let { autosensData ->
