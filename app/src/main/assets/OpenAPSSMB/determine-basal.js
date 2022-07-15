@@ -190,6 +190,16 @@ function withinISFlimits(liftISF, minISFReduction, maxISFReduction, sensitivityR
     console.error("final ISF factor is", round(final_ISF,2));
     return final_ISF;
 }
+    //*********************************************************************************
+    //**                     Start of autoISF code for predictions                   **
+    //*********************************************************************************
+
+    console.error("---------------------------------------------------------");
+    console.error( " autoISF version 2.2.6 ");
+    console.error("---------------------------------------------------------");
+
+
+
 
 function autoISF(sens, target_bg, profile, glucose_status, meal_data, currentTime, autosens_data, sensitivityRatio)
 {   // #### mod 7e: added switch for autoISF ON/OFF
@@ -364,9 +374,13 @@ function determine_varSMBratio(profile, bg, target_bg)
         return higher_SMB;
     }
     var new_SMB = lower_SMB + (higher_SMB - lower_SMB)*(bg-target_bg) / profile.smb_delivery_ratio_bg_range;
-    console.error('SMB delivery ratio set to interpolated value', new_SMB);
+    console.error('SMB delivery ratio set to interpolated value', round(new_SMB,2));
     return new_SMB;
 }
+
+    //*********************************************************************************
+    //**                     End of autoISF code for predictions                   **
+    //*********************************************************************************
 
 var determine_basal = function determine_basal(glucose_status, currenttemp, iob_data, profile, autosens_data, meal_data, tempBasalFunctions, microBolusAllowed, reservoir_data, currentTime, isSaveCgmSource) {
 
@@ -549,8 +563,11 @@ var determine_basal = function determine_basal(glucose_status, currenttemp, iob_
     }
     console.error("CR:",round(profile.carb_ratio,1));
     sens = autoISF(sens, target_bg, profile, glucose_status, meal_data, currentTime, autosens_data, sensitivityRatio);
+    var smb_ratioreport = determine_varSMBratio(profile, bg, target_bg);
     var currentRatio = round(profile.sens / sens,2);
-        console.error(" AUTOISF final Ratio:",currentRatio,", ISF:",convert_bg(sens,profile),", ");
+     console.error("---------------------------------------------------------");
+    console.error("Ratio",currentRatio," - ISF",convert_bg(sens,profile)," - SMB-DR",round(smb_ratioreport,2));
+    console.error("---------------------------------------------------------");
     // compare currenttemp to iob_data.lastTemp and cancel temp if they don't match
     var lastTempAge;
     if (typeof iob_data.lastTemp !== 'undefined' ) {
@@ -565,7 +582,7 @@ var determine_basal = function determine_basal(glucose_status, currenttemp, iob_
     rT.temp = 'absolute';
     rT.deliverAt = deliverAt;
     if ( microBolusAllowed && currenttemp && iob_data.lastTemp && currenttemp.rate !== iob_data.lastTemp.rate && lastTempAge > 10 && currenttemp.duration ) {
-        rT.reason = "Warning: currenttemp rate "+currenttemp.rate+" != lastTemp rate "+iob_data.lastTemp.rate+" from pumphistory; canceling temp";
+        rT.reason = "Warning: currenttemp rate " + round(currenttemp.rate,2) +" != lastTemp rate"+iob_data.lastTemp.rate+" from pumphistory; canceling temp";
         return tempBasalFunctions.setTempBasal(0, 0, profile, rT, currenttemp);
     }
     if ( currenttemp && iob_data.lastTemp && currenttemp.duration > 0 ) {
@@ -724,7 +741,7 @@ var determine_basal = function determine_basal(glucose_status, currenttemp, iob_
     // autotuned CR is still in effect even when basals and ISF are being adjusted by TT or autosens
     // this avoids overdosing insulin for large meals when low temp targets are active
     csf = sens / profile.carb_ratio;
-    console.error("profile.sens:",profile.sens,"sens:",sens,"CSF:",csf);
+    console.error("profile.sens:",profile.sens,"sens:",sens,"CSF:",round(csf,2));
 
     var maxCarbAbsorptionRate = 30; // g/h; maximum rate to assume carbs will absorb if no CI observed
     // limit Carb Impact to maxCarbAbsorptionRate * csf in mg/dL per 5m
