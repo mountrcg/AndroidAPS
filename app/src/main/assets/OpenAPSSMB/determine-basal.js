@@ -550,7 +550,7 @@ var determine_basal = function determine_basal(glucose_status, currenttemp, iob_
     console.error("CR:",round(profile.carb_ratio,1));
     sens = autoISF(sens, target_bg, profile, glucose_status, meal_data, currentTime, autosens_data, sensitivityRatio);
     var currentRatio = round(profile.sens / sens,2);
-    console.error("final autoISF Ratio:",currentRatio,"-> ISF:",convert_bg(sens,profile));
+        console.error(" AUTOISF final Ratio:",currentRatio,", ISF:",convert_bg(sens,profile),", ");
     // compare currenttemp to iob_data.lastTemp and cancel temp if they don't match
     var lastTempAge;
     if (typeof iob_data.lastTemp !== 'undefined' ) {

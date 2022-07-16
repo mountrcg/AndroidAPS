@@ -15,8 +15,8 @@ import javax.inject.Singleton
 class SkinLowRes @Inject constructor(private val config: Config) : SkinInterface {
 
     override val description: Int get() = R.string.lowres_description
-    override val mainGraphHeight: Int get() = 275
-    override val secondaryGraphHeight: Int get() = 215
+    override val mainGraphHeight: Int get() = 285
+    override val secondaryGraphHeight: Int get() = 210
 
     override fun preProcessLandscapeActionsLayout(dm: DisplayMetrics, binding: ActionsFragmentBinding) {
         val screenWidth = dm.widthPixels
