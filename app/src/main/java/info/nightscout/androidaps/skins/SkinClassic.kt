@@ -13,8 +13,8 @@ import javax.inject.Singleton
 class SkinClassic @Inject constructor(private val config: Config): SkinInterface {
 
     override val description: Int get() = R.string.classic_description
-    override val mainGraphHeight: Int get() = 200
-    override val secondaryGraphHeight: Int get() = 100
+    override val mainGraphHeight: Int get() = 340
+    override val secondaryGraphHeight: Int get() = 240
 
     override fun preProcessLandscapeOverviewLayout(dm: DisplayMetrics, binding: OverviewFragmentBinding, isLandscape: Boolean, isTablet: Boolean, isSmallHeight: Boolean) {
         super.preProcessLandscapeOverviewLayout(dm, binding, isLandscape, isTablet, isSmallHeight)
