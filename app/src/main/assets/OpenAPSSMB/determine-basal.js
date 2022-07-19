@@ -113,21 +113,20 @@ function enable_smb(
     //**                     Start of autoISF code for predictions                   **
     //*********************************************************************************
 
-    console.error("---------------------------------------------------------");
-    console.error( " autoISF version 2.2.7 ");
-    console.error("---------------------------------------------------------");
-
 function loop_smb(profile, iob_data) {
     if (profile.temptargetSet) {
         var target = profile.min_bg;
         profile.iob_threshold_percent=101;      // effectively disabled; later make it variable
         if (profile.iob_threshold_percent/100 < iob_data.iob/profile.max_iob) {
+            console.error("---------------------------------------------------------");
             console.error("SMB disabled by full loop logic: iob",iob_data.iob,"is more than", profile.iob_threshold_percent+"% of maxIOB",profile.max_iob);
             return "iobTH";
         } else if ( target % 2 == 1 ) {         // odd number
+            console.error("---------------------------------------------------------");
             console.error("SMB disabled by full loop logic: odd TT");
             return "blocked";
         } else {
+            console.error("---------------------------------------------------------");
             console.error("SMB enabled by full loop logic: even TT");
             return "enforced";                  // even number
         }
@@ -586,11 +585,16 @@ var determine_basal = function determine_basal(glucose_status, currenttemp, iob_
         //console.log(" (autosens ratio "+sensitivityRatio+")");
     }
     console.error("CR:",round(profile.carb_ratio,1));
+        console.error("---------------------------------------------------------");
+        console.error( " autoISF version 2.2.7 ");
+        console.error("---------------------------------------------------------");
     sens = autoISF(sens, target_bg, profile, glucose_status, meal_data, currentTime, autosens_data, sensitivityRatio);
     var smb_ratioreport = determine_varSMBratio(profile, bg, target_bg);
     var currentRatio = round(profile.sens / sens,2);
+    var loop_wants_smb = loop_smb(profile, iob_data);
      console.error("---------------------------------------------------------");
-    console.error("Ratio",currentRatio," - ISF",convert_bg(sens,profile)," - SMB-DR",round(smb_ratioreport,2));
+    console.error("Ratio",currentRatio," | ISF",convert_bg(sens,profile)," | SMB-DR",round
+    (smb_ratioreport,2));
     console.error("---------------------------------------------------------");
     // compare currenttemp to iob_data.lastTemp and cancel temp if they don't match
     var lastTempAge;
@@ -731,7 +735,6 @@ var determine_basal = function determine_basal(glucose_status, currenttemp, iob_
     ZTpredBGs.push(bg);
     UAMpredBGs.push(bg);
 
-    var loop_wants_smb = loop_smb(profile, iob_data);
     var enableSMB = false;
     var loop_wanted_smb = loop_wants_smb;
     if (microBolusAllowed && loop_wanted_smb != "AAPS") {
