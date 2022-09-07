@@ -333,8 +333,9 @@
     <string name="smb_delivery_settings_summary">smb delivery settings:  Set of options to increase the actual SMB size which can be delivered in situations where ISF was strengthened, i.e. fairly low ISF figure.\n\nUSE WITH CAUTION</string>
     <string name="openapsama_enable_autoISF">Use autoISF feature</string>
     <string name="a52_risk_enable">A52 risk enable</string>
-    <string name="a52_risk_enable_summary">Flag to disable Medtronic A52 error safety (should
-        lead to more aggressive bolusing)</string>
+    <string name="a52_risk_enable_summary">Flag to disable Medtronic A52 error safety (should lead to more agressive bolusing)</string>
+    <string name="exercise_mode_enable">Enable exercise mode</string>
+    <string name="exercise_mode_enable_summary">Flag to engage the exercise mode - increased sensitivity, decreased profile for high temp targets</string>
     <string name="engineering_mode">Engineering mode</string>
     <string name="engineering_mode_summary">Flag to enable engineering mode (UNSAFE)</string>
     <string name="bypass_old_version_check_title">Skip checking for new version (not recommended)</string>
@@ -778,6 +779,7 @@
     <string name="key_openapsama_useautosens" translatable="false">openapsama_useautosens</string>
     <string name="key_openapsama_enable_autoISF" translatable="false">openapsama_enable_autoISF</string>
     <string name="key_a52_risk_enable" translatable="false">a52_risk_enable</string>
+    <string name="key_exercise_mode_enable" translatable="false">openapssmb_exercise_mode</string>
     <string name="key_engineering_mode" translatable="false">engineering_mode</string>
     <string name="readstatusfailed">Read status failed</string>
     <string name="record_pump_site_change">Record pump site change</string>
