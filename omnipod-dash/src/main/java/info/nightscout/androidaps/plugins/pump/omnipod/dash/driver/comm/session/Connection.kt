@@ -200,7 +200,7 @@ class Connection(
     // This will be called from a different thread !!!
     override fun onConnectionLost(status: Int) {
         aapsLogger.info(LTag.PUMPBTCOMM, "Lost connection with status: $status")
-        disconnect(false)
+        disconnect(true)
     }
 
     companion object {
